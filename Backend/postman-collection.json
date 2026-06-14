@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Meetings Management API",
+    "description": "קולקשן Postman למערכת ניהול פגישות - דורון פריגל",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "GET all teams",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/teams",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "teams"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meetings",
+      "item": [
+        {
+          "name": "GET meetings by group id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/meetings/group/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings", "group", "1"]
+            }
+          }
+        },
+        {
+          "name": "GET meeting by id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/meetings/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST add meeting",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_id\": 1,\n  \"start_time\": \"2026-12-20T10:00:00\",\n  \"end_time\": \"2026-12-20T11:30:00\",\n  \"description\": \"Sprint planning demo\",\n  \"room\": \"Blue Room\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meetings",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings"]
+            }
+          }
+        },
+        {
+          "name": "PUT update meeting",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_id\": 1,\n  \"start_time\": \"2026-12-20T12:00:00\",\n  \"end_time\": \"2026-12-20T13:00:00\",\n  \"description\": \"Updated sprint planning\",\n  \"room\": \"New York Room\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meetings/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings", "1"]
+            }
+          }
+        },
+        {
+          "name": "DELETE meeting",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/meetings/1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST validation - past start time (400)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_id\": 1,\n  \"start_time\": \"2026-01-01T10:00:00\",\n  \"end_time\": \"2026-01-01T11:00:00\",\n  \"description\": \"Past meeting test\",\n  \"room\": \"Blue Room\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meetings",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings"]
+            }
+          }
+        },
+        {
+          "name": "GET invalid groupId (400)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/meetings/group/abc",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "meetings", "group", "abc"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
